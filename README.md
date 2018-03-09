@@ -34,7 +34,7 @@ The second function set both log levels equals.
 By default writing to an logfile is disabled until the log level != None
 
 ### Log Levels
-Posible loglevel with decreasing priority
+Possible log level with decreasing priority
 
     None                // Print absolut Noting
     UserInfo            // Information for Users
@@ -60,7 +60,7 @@ you can change the location or the name of the logfile by
     setLogFileName(new loc/name)
 If an logfile is already used the old file gets closed with a hint to the new location.
 
-A new logfile gets opened with the next to its written logmessage.
+A new logfile gets opened with the next to its written log message.
 ### Cli Highlighting 
 Because of fun the is a cli highlighting. 
 If cause a issue you can disable it by 
