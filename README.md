@@ -1,4 +1,4 @@
-# Simple Logfile writer
+# Simple Logfile Writer
 
 ## Goals
 This project has the goal to implement a simple logging mechanism where it is possible to change the amount of 
