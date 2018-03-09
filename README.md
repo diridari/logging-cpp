@@ -1,6 +1,16 @@
 # Simple Logfile writer
 
 ## Goals
+This project has the goal to implement a simple logging mechanism where it is possible to change the amount of 
+information on runtime.
+
+## Futures
+* Set 9 individual and configurable log levels
+* print message the the cli and/or to an logfile
+* change the location and name of the logfile
+* logfile and cli logging can have individual log levels 
+* cli highlighting (can be disabled) 
+
 
 ***
 
