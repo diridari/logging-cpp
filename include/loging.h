@@ -30,16 +30,17 @@ enum LogLevel {
 class Log {
 
     /**
-     * return a string which contains the name of loglevel
+     * return a string which contains the name of log level
      */
-    static string logLeveltoString(LogLevel l);
+    static string logLevelToString(LogLevel l);
+    static string highLight(LogLevel l);
 public:
 
     /**
      * logging.
-     * if somthing happen in the program call this method and communicate it.
-     * By The loglevel you cann define how important you message is
-     * @param message messeage conntent
+     * if something happen in the program call this method and communicate it.
+     * By The log level you can define how important you message is
+     * @param message message content
      * @param importance of the message
      */
 
@@ -48,15 +49,15 @@ public:
     /**
      * set the current level.
      * if a message is equal important or more important(lower number) than this message gets printed to the cli
-     * @para cli  loglevel for cli
-     * @param file loglevel for logging to file
+     * @para cli  log level for cli
+     * @param file log level for logging to file
      */
     static void setLogLevel(LogLevel cli, LogLevel file);
 
     /**
      * set the current level.
      * if a message is equal important or more important(lower number) than this message gets printed to the cli
-     * @para cli  loglevel for cli an dfile
+     * @para cli  log level for cli AND file
      */
     static void setLogLevel(LogLevel cliAndFile);
 
@@ -67,6 +68,8 @@ public:
      * @param fileName name and location of the new logfile
      */
     static void setLogFileName(string fileName);
+
+    static void setCliHighLight(bool enable);
 
 
 };
