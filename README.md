@@ -64,7 +64,7 @@ The log file is by default disabled.
 
 You can  enable it by set its prio higher than None.
 
-####Change the logfile location
+#### Change the logfile location
 you can change the location or the name of the logfile by 
 
     setLogFileName(new loc/name)
