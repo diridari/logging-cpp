@@ -106,6 +106,7 @@ The default configuration is :
     ExternalProject_Get_Property(simpleLogging BINARY_DIR)
     include_directories(${SOURCE_DIR}/include) # include simpleLog/inlude
     LINK_DIRECTORIES(${BINARY_DIR}) ## link git build lib
+    add_subdirectory(${SOURCE_DIR})
 	...
     target_link_libraries(youTarget SimpleLoggingLib)
     ADD_DEPENDENCIES(youTarget simpleLogging)
