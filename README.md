@@ -84,7 +84,8 @@ The default configuration is :
     cli highlight = true;
     log File Name = "log.log";
     
- # Cmake implemenation 
+ ***
+ # Cmake implementation 
  To include this project to you own project you can use following cmake configuration:
  
     include(ExternalProject)
