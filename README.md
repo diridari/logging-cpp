@@ -69,7 +69,6 @@ you can change the location or the name of the logfile by
 
     setLogFileName(new loc/name)
 If an logfile is already used the old file gets closed with a hint to the new location.
-
 A new logfile gets opened with the next to its written log message.
 ### Cli Highlighting 
 Because of fun the is a cli highlighting. 
@@ -84,3 +83,22 @@ The default configuration is :
     log File level = None;
     cli highlight = true;
     log File Name = "log.log";
+    
+ # Cmake implemenation 
+ To include this project to you own project you can use following cmake configuration:
+ 
+    include(ExternalProject)
+    externalProject_add(
+            simpleLogging
+            GIT_REPOSITORY https://github.com/diridari/SimpleLogging.git
+            CONFIGURE_COMMAND   cmake CMakeLists.txt
+            BUILD_IN_SOURCE ON
+            INSTALL_COMMAND make SimpleLoggingLib   # make target
+    )
+    ExternalProject_Get_Property(simpleLogging SOURCE_DIR)
+    ExternalProject_Get_Property(simpleLogging BINARY_DIR)
+    include_directories(${SOURCE_DIR}/include) # include simpleLog/inlude
+    LINK_DIRECTORIES(${BINARY_DIR}) ## link git build lib
+    ...
+    target_link_libraries(youTarget SimpleLoggingLib)
+    ADD_DEPENDENCIES(youTarget simpleLogging)
