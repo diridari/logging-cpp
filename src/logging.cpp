@@ -5,7 +5,7 @@
  *      Author: Sebastian Balz
  */
 
-#include "loging.h"
+#include "logging.h"
 #include <fstream>
 #include <mutex>
 

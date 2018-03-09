@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include <loging.h>
+#include <logging.h>
 #include <unistd.h>
 
 int main() {

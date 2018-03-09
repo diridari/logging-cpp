@@ -85,6 +85,12 @@ The default configuration is :
     log File Name = "log.log";
     
  ***
+ # Build
+ cmake build commands:
+ 
+ 	cmake CMakeLists.txt
+	make 
+	
  # Cmake implementation 
  To include this project to you own project you can use following cmake configuration:
  
