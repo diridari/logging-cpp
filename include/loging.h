@@ -2,7 +2,7 @@
  * Logging.h
  *
  *  Created on: Sep 4, 2017
- *      Author: sbalz
+ *      Author: Sebastian Balz
  */
 
 #ifndef LOGGING_H_
@@ -26,6 +26,7 @@ enum LogLevel {
     DebugL2 = 6,
     DebugL3 = 7
 };
+
 
 class Log {
 

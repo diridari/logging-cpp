@@ -1,3 +1,10 @@
+/*
+ * example.cpp
+ *
+ *  Created on: Sep 4, 2017
+ *      Author: Sebastian Balz
+ */
+
 #include <iostream>
 #include <loging.h>
 #include <unistd.h>
