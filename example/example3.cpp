@@ -15,7 +15,7 @@ void heavyCalucuation(){
     Log::log(__FUNCTION__,"start heavy calc",Info);
 
     int time = rand()%10000;
-    Log::log(__FUNCTION__,"calculation does net " + to_string(time) + "us",Debug);
+    Log::log(__FUNCTION__,"calculation does need " + to_string(time) + "us",Debug);
     usleep(time);
     Log::log(__FUNCTION__,"calculation done",Message);
 }
@@ -30,7 +30,7 @@ string magicFunction(string abc, int num){
         Log::log(__FUNCTION__,"not allowed parameter : " + to_string(num),CriticError);
         return "";
     }
-    Log::log("magicFunction","got param : " + abc + "and" + to_string(num),Debug);
+    Log::log("magicFunction","got param : " + abc + " and " + to_string(num),Debug);
     heavyCalucuation();
     string out = abc + to_string(num);
     Log::log("magicFunction","magically result : " + out,Message);

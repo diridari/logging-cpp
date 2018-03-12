@@ -16,20 +16,20 @@ information on runtime.
 
 ## Example output 
 
-    <span style="color:blue"> 0:0   	:User_info    : main	 : do somthing with default logLevel </span>
+    0:0   	:User_info    : main	 : do somthing with default logLevel
+    0:9   	:CriticError  : magicFunction	 : not allowed parameter : -1
+    0:9   	:User_info    : main	 : do somthing with Message as logLevel
+    0:17  	:    Message  : heavyCalucuation	 : calculation done
+    0:17  	:    Message  : magicFunction	 : magically result : abc42
     0:17  	:CriticError  : magicFunction	 : not allowed parameter : -1
-    0:17  	:User_info    : main	 : do somthing with Message as logLevel
-    0:32  	:    Message  : heavyCalucuation	 : calculation done
-    0:32  	:    Message  : magicFunction	 : magically result : abc42
-    0:32  	:CriticError  : magicFunction	 : not allowed parameter : -1
-    0:32  	:User_info    : main	 : do somthing with Debug as logLevel
-    0:32  	:      Debug  : magicFunction	 : got param : abcand42
-    0:32  	:      info   : heavyCalucuation	 : start heavy calc
-    0:32  	:      Debug  : heavyCalucuation	 : calculation does net 6262us
-    0:48  	:    Message  : heavyCalucuation	 : calculation done
-    0:48  	:    Message  : magicFunction	 : magically result : abc42
-    0:48  	:CriticError  : magicFunction	 : not allowed parameter : -1
-    
+    0:17  	:User_info    : main	 : do somthing with Debug as logLevel
+    0:17  	:      Debug  : magicFunction	 : got param : abc and 42
+    0:17  	:      info   : heavyCalucuation	 : start heavy calc
+    0:17  	:      Debug  : heavyCalucuation	 : calculation does need 6262us
+    0:23  	:    Message  : heavyCalucuation	 : calculation done
+    0:23  	:    Message  : magicFunction	 : magically result : abc42
+    0:23  	:CriticError  : magicFunction	 : not allowed parameter : -1
+        
 ## How to use
 for future informations see the example.
 ### Log something
