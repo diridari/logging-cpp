@@ -31,7 +31,7 @@ information on runtime.
     0:23  	:CriticError  : magicFunction	 : not allowed parameter : -1
         
 ## How to use
-for future informations see the example.
+for future information's see the example.
 ### Log something
 write a log message is very simple:
 
@@ -87,7 +87,7 @@ You can change to log level of the logfile and the log level of the cli individu
 
 The log file is by default disabled. 
 
-You can  enable it by set its prio higher than None.
+You can  enable it by set its priority higher than None.
 
 #### Change the logfile location
 you can change the location or the name of the logfile by 

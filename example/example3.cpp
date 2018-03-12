@@ -1,5 +1,5 @@
 //
-// Created by basti on 12.03.2018.
+// Created by Sebastian Balz on 12.03.2018.
 //
 
 #include <string>
@@ -11,7 +11,7 @@ using  namespace std;
 /**
  * wast some time
  */
-void heavyCalucuation(){
+void heavyCalculation(){
     Log::log(__FUNCTION__,"start heavy calc",Info);
 
     int time = rand()%10000;
@@ -31,24 +31,24 @@ string magicFunction(string abc, int num){
         return "";
     }
     Log::log("magicFunction","got param : " + abc + " and " + to_string(num),Debug);
-    heavyCalucuation();
+    heavyCalculation();
     string out = abc + to_string(num);
     Log::log("magicFunction","magically result : " + out,Message);
     return out;
 
 }
 int main(){
-    Log::log("main","do somthing with default logLevel",UserInfo);
+    Log::log("main","do something with default logLevel",UserInfo);
     magicFunction("abc",42);
     magicFunction("hello world",-1);
 
     Log::setLogLevel(Message,None);
-    Log::log("main","do somthing with Message as logLevel",UserInfo);
+    Log::log("main","do something with Message as logLevel",UserInfo);
     magicFunction("abc",42);
     magicFunction("hello world",-1);
 
     Log::setLogLevel(DebugL3,None);
-    Log::log("main","do somthing with Debug as logLevel",UserInfo);
+    Log::log("main","do something with Debug as logLevel",UserInfo);
     magicFunction("abc",42);
     magicFunction("hello world",-1);
 

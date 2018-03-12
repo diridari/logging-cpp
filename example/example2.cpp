@@ -1,5 +1,5 @@
 //
-// Created by basti on 12.03.2018.
+// Created by Sebastian Balz on 12.03.2018.
 //
 
 #include <logging.h>
