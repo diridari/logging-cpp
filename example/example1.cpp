@@ -5,7 +5,6 @@
  *      Author: Sebastian Balz
  */
 
-#include <iostream>
 #include <logging.h>
 #include <unistd.h>
 

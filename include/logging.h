@@ -35,6 +35,7 @@ class Log {
      */
     static string logLevelToString(LogLevel l);
     static string highLight(LogLevel l);
+    static LogLevel IntToLogLevel(int i);
 public:
 
     /**
@@ -48,12 +49,26 @@ public:
     static void log(string message, LogLevel l);
 
     /**
+     * logging.
+     * if something happen in the program call this method and communicate it.
+     * By The log level you can define how important you message is
+     * @param src src of the log message
+     * @param message message content
+     * @param importance of the message
+     */
+
+    static void log(string src ,string message, LogLevel l);
+
+
+    /**
      * set the current level.
      * if a message is equal important or more important(lower number) than this message gets printed to the cli
      * @para cli  log level for cli
      * @param file log level for logging to file
+     * @return set success
      */
     static void setLogLevel(LogLevel cli, LogLevel file);
+    static void setLogLevel(int cli, int file);
 
     /**
      * set the current level.
@@ -61,6 +76,7 @@ public:
      * @para cli  log level for cli AND file
      */
     static void setLogLevel(LogLevel cliAndFile);
+    static void setLogLevel(int cliAndFile);
 
 
     /**

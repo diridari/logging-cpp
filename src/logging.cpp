@@ -50,16 +50,8 @@ void openLogWriter(fstream **writer) {
 
 void Log::log(string message, LogLevel l){
     locker.lock();
-
     string log = getTimeStamp() + logLevelToString(l) + message;
-    // write to cli
-    if (l <= level){
-        string tmp = highLight(l) + log;
-        if(highlight){
-            tmp +=  "\033[0;0m";
-        }
-        cout <<  tmp <<endl; ;
-    }
+
     // write to logfile
     if (l <= logFileLevel)
     {
@@ -68,6 +60,15 @@ void Log::log(string message, LogLevel l){
         *logWriter <<   log << endl;
         logWriter->flush();
     }
+    // write to cli
+    if (l <= level){
+        string tmp = highLight(l) + log;
+        if(highlight){
+            tmp +=  "\033[0;0m";
+        }
+        cout <<  tmp <<endl; ;
+    }
+
     locker.unlock();
 }
 
@@ -152,6 +153,36 @@ string Log::highLight(LogLevel l) {
 
 void Log::setCliHighLight(bool enable) {
     highlight = enable;
+
+}
+
+void Log::log(string src, string message, LogLevel l) {
+    log(src + "\t : " +message,l);
+}
+
+void Log::setLogLevel(int cli, int file) {
+    setLogLevel(IntToLogLevel(cli),IntToLogLevel(file));
+}
+
+LogLevel Log::IntToLogLevel(int i) {
+    switch (i){
+        case    -1  : return None;
+        case    0   : return UserInfo;
+        case    1   : return CriticError;
+        case    2   : return Error;
+        case    3   : return Message;
+        case    4   : return Info;
+        case    5   : return Debug;
+        case    6   : return DebugL2;
+        case    7   : return DebugL3;
+        default:
+            cerr << "Log :: change Loglevel from int with un undefined value: allowed values ar <-1...7>  set logLevel to Debug"<< endl;
+            return Debug;
+    }
+}
+
+void Log::setLogLevel(int cliAndFile) {
+    setLogLevel(IntToLogLevel(cliAndFile));
 
 }
 

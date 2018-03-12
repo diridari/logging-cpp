@@ -14,22 +14,43 @@ information on runtime.
 
 ***
 
+## Example output 
+
+    <span style="color:blue"> 0:0   	:User_info    : main	 : do somthing with default logLevel </span>
+    0:17  	:CriticError  : magicFunction	 : not allowed parameter : -1
+    0:17  	:User_info    : main	 : do somthing with Message as logLevel
+    0:32  	:    Message  : heavyCalucuation	 : calculation done
+    0:32  	:    Message  : magicFunction	 : magically result : abc42
+    0:32  	:CriticError  : magicFunction	 : not allowed parameter : -1
+    0:32  	:User_info    : main	 : do somthing with Debug as logLevel
+    0:32  	:      Debug  : magicFunction	 : got param : abcand42
+    0:32  	:      info   : heavyCalucuation	 : start heavy calc
+    0:32  	:      Debug  : heavyCalucuation	 : calculation does net 6262us
+    0:48  	:    Message  : heavyCalucuation	 : calculation done
+    0:48  	:    Message  : magicFunction	 : magically result : abc42
+    0:48  	:CriticError  : magicFunction	 : not allowed parameter : -1
+    
 ## How to use
 for future informations see the example.
 ### Log something
 write a log message is very simple:
 
     Log::log(message,importance);
+or
+
+    Log::log(src,message,importance);
         
 If the configured log level is lower than the importance of this message the the message gets printed to the cli and to 
 the logfile (if enabled).
 
 E.g
 
-    Log::log("somthing awful happen :( ",Error);
+    Log::log("something awful happen :( ",Error);
+    Log::log("src of message",""something awful happen :( ",Error);
 would result:
 
-    0:21  	:  Error      : somthing awful happen :( 
+    0:21  	:  Error      : something awful happen :(
+    0:21  	:  Error      : src of message  :  something awful happen :(
   
 ### setLogLevel
 with this function you can change the amount of information witch gets printed to the cli or tho the logfile.
@@ -41,20 +62,24 @@ This functions is overloaded with:
 This first function sets the logLevel for the logfile and the cli logging individual.
 The second function set both log levels equals.
 
+alternative you can use setLogLevel() with int values
+
+    setLogLevel(3,-1); // cli = Message file = none
 By default writing to an logfile is disabled until the log level != None
 
+    
 ### Log Levels
 Possible log level with decreasing priority
 
-    None                // Print absolut Noting
-    UserInfo            // Information for Users
-    CriticError         // bet
-    Error 
+    None                // int value <-1>   Print absolut Noting
+    UserInfo            // int value <0>    Information for Users
+    CriticError         // int value <1>     bet .. 
+    Error               // ..
     Message
     Info
     Debug 
     DebugL2 
-    DebugL3
+    DebugL3             //int value <7>    
      
 ### Log File
 It is possible to write each Log information to an logfile. 
