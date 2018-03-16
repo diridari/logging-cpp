@@ -10,8 +10,26 @@
 
 #include <iostream>
 #include <string>
+#include <typeinfo>
+#include "advacedConfiguration.h"
+
 using namespace std;
 
+/**
+ * Compiler magic.
+ */
+#define GET_MACRO(_1,_2,_3,NAME,...) NAME
+/**
+ * Logging.
+ * if something happen in the program call this makro and communicate it.
+ * By The log level you can define how important you message is
+ * if an src is not defined the src is set to the function name.
+ * The src of the message gets logged if "setPintLogSrc(true)".
+ * You can set the max length of the messageSrc with "setPintLogSrc(true,<maxLength>)" or set it to unlimited with "setPintLogSrc(true,0)"
+ */
+#define log(...) GET_MACRO(__VA_ARGS__,logWithSrc , logWithoutSrc)(__VA_ARGS__)
+#define logWithoutSrc(mes,lev) Log::log_(__FUNCTION__,mes,lev);
+#define logWithSrc(src,mes,lev) Log::log_(src,mes,lev);
 /**
  * Log level.
  */
@@ -28,15 +46,24 @@ enum LogLevel {
 };
 
 
+static const char *const DISABLE_CLI_HIGHLIGHT = "\033[0;0m";
+
 class Log {
 
     /**
      * return a string which contains the name of log level
      */
     static string logLevelToString(LogLevel l);
-    static string highLight(LogLevel l);
+    /**
+     * set the cli highlight coresponding to the  loglevel
+     * @param l  loglevel to determ cli collore
+     * @return cli command to highlight the following text
+     */
+    static string highlight(LogLevel l);
     static LogLevel IntToLogLevel(int i);
+    static string handleSrc(string src);
 public:
+
 
     /**
      * logging.
@@ -46,7 +73,7 @@ public:
      * @param importance of the message
      */
 
-    static void log(string message, LogLevel l);
+    static void log_(string message, LogLevel l);
 
     /**
      * logging.
@@ -57,8 +84,7 @@ public:
      * @param importance of the message
      */
 
-    static void log(string src ,string message, LogLevel l);
-
+    static void log_(string src ,string message, LogLevel l);
 
     /**
      * set the current level.
@@ -86,9 +112,18 @@ public:
      */
     static void setLogFileName(string fileName);
 
-    static void setCliHighLight(bool enable);
+
+    /**
+     * allows the set some additional  configurations
+     * @return
+     */
+    static advacedConfiguration  *advacedConf();
+
+
 
 
 };
+
+
 
 #endif /* LOGGING_H_ */

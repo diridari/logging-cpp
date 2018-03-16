@@ -15,12 +15,12 @@ static LogLevel level = Error;
 static LogLevel logFileLevel = None; // create no log file if not requested
 static fstream *logWriter;
 static bool loggerIsOpen = false;
-
 static bool firstTimeStamp = true;
-static bool highlight = true;
 static string logfile = "log.log";
 static system_clock::time_point startTime;
 static mutex locker;
+static advacedConfiguration config =  advacedConfiguration();
+
 
 static string getTimeStamp()
 {
@@ -48,9 +48,14 @@ void openLogWriter(fstream **writer) {
     loggerIsOpen = true;
 }
 
-void Log::log(string message, LogLevel l){
+
+
+void Log::log_(string src, string message, LogLevel l) {
     locker.lock();
-    string log = getTimeStamp() + logLevelToString(l) + message;
+
+    src = config.handleSrc(src);
+
+    string log = getTimeStamp() + logLevelToString(l)  + src   + message;
 
     // write to logfile
     if (l <= logFileLevel)
@@ -62,14 +67,18 @@ void Log::log(string message, LogLevel l){
     }
     // write to cli
     if (l <= level){
-        string tmp = highLight(l) + log;
+        string tmp = highlight(l) + log;
         if(highlight){
-            tmp +=  "\033[0;0m";
+            tmp += DISABLE_CLI_HIGHLIGHT;
         }
         cout <<  tmp <<endl; ;
     }
 
     locker.unlock();
+}
+
+void Log::log_(string message, LogLevel l){
+    log_("",message,l);
 }
 
 
@@ -124,8 +133,8 @@ string Log::logLevelToString(LogLevel l)
 
 }
 
-string Log::highLight(LogLevel l) {
-    if(highlight) {
+string Log::highlight(LogLevel l) {
+    if(config.isHighlight()) {
         switch (l) {
             case None:
                 return "";
@@ -151,14 +160,8 @@ string Log::highLight(LogLevel l) {
 
 }
 
-void Log::setCliHighLight(bool enable) {
-    highlight = enable;
 
-}
 
-void Log::log(string src, string message, LogLevel l) {
-    log(src + "\t : " +message,l);
-}
 
 void Log::setLogLevel(int cli, int file) {
     setLogLevel(IntToLogLevel(cli),IntToLogLevel(file));
@@ -185,4 +188,11 @@ void Log::setLogLevel(int cliAndFile) {
     setLogLevel(IntToLogLevel(cliAndFile));
 
 }
+
+
+
+advacedConfiguration * Log::advacedConf() {
+    return &config;
+}
+
 

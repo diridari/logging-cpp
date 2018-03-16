@@ -1,50 +1,61 @@
-/*
- * example.cpp
- *
- *  Created on: Sep 4, 2017
- *      Author: Sebastian Balz
- */
+//
+// Created by Sebastian Balz on 12.03.2018.
+//
 
+#include <string>
 #include <logging.h>
 #include <unistd.h>
 
-int main() {
-    // Log level cli and log level file are equal ->
-    // each message printed to the file gets printed to the logfile
-    Log::setLogLevel(Debug);
+using  namespace std;
 
-    std::cout << "Simple Logfile example" << std::endl;
-    Log::log("This message gets not printed because the Log level is lower that the the level of this message",DebugL2);
-    Log::log("This message gets printed because the Log level is higher that the the level of this message",Message);
+class abc{
+    public:
 
-    usleep(11030); // make the timestamp more interesting ... :)
-    // change the log file
-    Log::setLogFileName("newLog.log");
-    // just for the usage of the application relevant information gets printed to the cli and every print get written to the logfile
-    Log::setLogLevel(UserInfo,DebugL3);
-    Log::log("gets printed to cli and logfile",UserInfo);
-    Log::log("get just written to the logfile",Message);
+    /**
+     * wast some time
+     */
+    void heavyCalculation(){
+        Log::log("start heavy calc",Info);
 
-    // change the logLevel
-    Log::setLogLevel(Message,DebugL3);
-    Log::log("get to both because of the new log level",Message);
+        int time = rand()%10000;
+        Log::log("calculation does need " + to_string(time) + "us",Debug);
+        usleep(time);
+        Log::log("calculation done",Message);
+    }
+    /**
+     * random example function
+     * @param abc string
+     * @param num number added to string
+     * @return string + num
+     */
+    string magicFunction(string abc, int num){
+        if(num < 0){
+            Log::log("not allowed parameter : " + to_string(num),CriticError);
+            return "";
+        }
+        Log::log("got param : " + abc + " and " + to_string(num),Debug);
+        heavyCalculation();
+        string out = abc + to_string(num);
+        Log::log("magically result : " + out,Message);
+        return out;
 
-    Log::setLogLevel(DebugL3,DebugL3);
+    }
+};
+int main(){
+    abc a;
+    Log::advacedConf()->pintLogSrc(true, 0);
+    Log::log("Custom Src","do something with default logLevel",UserInfo);
+    a.magicFunction("abc",42);
+    a.magicFunction("hello world",-1);
 
-    usleep(10100);
-    Log::setLogLevel(DebugL3,DebugL3);
-    Log::log("DebugL3",DebugL3);
-    Log::log("DebugL2",DebugL2);
-    Log::log("Debug",Debug);
-    Log::log("Info",Info);
-    Log::log("Message",Message);
-    Log::log("Error",Error);
-    Log::log("CriticError",CriticError);
-    Log::log("UserInfo",UserInfo);
+    Log::setLogLevel(Message,None);
+    Log::log("do something with Message as logLevel",UserInfo);
+    a. magicFunction("abc",42);
+    a.magicFunction("hello world",-1);
 
-    usleep(10000);
-    // disable the cli highlighting
-    Log::setCliHighLight(false);
-    Log::log("CriticError with out highlighting",CriticError);
-    return 0;
+    Log::setLogLevel(DebugL3,None);
+    Log::log("do something with Debug as logLevel",UserInfo);
+    a.magicFunction("abc",42);
+    a.magicFunction("hello world",-1);
+
 }
