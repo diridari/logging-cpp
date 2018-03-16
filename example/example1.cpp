@@ -43,6 +43,7 @@ class abc{
 };
 int main(){
     abc a;
+    Log::advacedConf()->
     Log::advacedConf()->pintLogSrc(true, 0);
     Log::log("Custom Src","do something with default logLevel",UserInfo);
     a.magicFunction("abc",42);

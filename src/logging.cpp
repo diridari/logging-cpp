@@ -57,21 +57,14 @@ void Log::log_(string src, string message, LogLevel l) {
 
     string log = getTimeStamp() + logLevelToString(l)  + src   + message;
 
-    // write to logfile
-    if (l <= logFileLevel)
-    {
-        if (!loggerIsOpen)
-            openLogWriter(&logWriter);
-        *logWriter <<   log << endl;
-        logWriter->flush();
-    }
+
     // write to cli
     if (l <= level){
         string tmp = highlight(l) + log;
         if(highlight){
             tmp += DISABLE_CLI_HIGHLIGHT;
         }
-        cout <<  tmp <<endl; ;
+        cout <<  tmp <<"\n";
     }
 
     locker.unlock();

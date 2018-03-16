@@ -3,6 +3,7 @@
 //
 
 #include <logging.h>
+#include <unistd.h>
 
 /**
  * Just a litle step to improve the readability of logfiles if need the information
@@ -10,11 +11,12 @@
  * @return
  */
 int main(){
-    Log::advacedConf()->disbaleLogSrcShift(true);
+
     Log::setLogLevel(Message,None);
     Log::advacedConf()->pintLogSrc(true);
-    Log::log("just a long message src" ,"Do you not also think ",Message);
-    Log::log("","that it's hard to read a log file where loggSrc",Message);
+    Log::log("just a long message src", "Do you not also think ", Message);
+    Log::log("", "that it's hard to read a log file where loggSrc", Message);
+
     Log::log("message src", "is very important",Message);
     Log::log("src", "and you do",Message);
     Log::log("verrrry Long and important Log Src ", "not want to disable it. But",Message);
@@ -33,4 +35,5 @@ int main(){
     Log::log("src", "and you don't",Message);
     Log::log("verrrry Long and important Log Src ", "want to disable it. But",Message);
     Log::log("","you also like to have a readable logfile?\n\n",Message);
+    sleep(5000);
 }
