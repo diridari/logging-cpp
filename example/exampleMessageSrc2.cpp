@@ -35,5 +35,5 @@ int main(){
     Log::log("src", "and you don't",Message);
     Log::log("verrrry Long and important Log Src ", "want to disable it. But",Message);
     Log::log("","you also like to have a readable logfile?\n\n",Message);
-    sleep(5000);
+
 }
