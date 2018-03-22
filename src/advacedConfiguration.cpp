@@ -24,27 +24,27 @@ void advacedConfiguration::setCliHighLight(bool enable) {
 
 }
 
-bool logerPrivateConfig::isPrintLogSrc() const {
+bool loggerPrivateConfig::isPrintLogSrc() const {
     return printLogSrc;
 }
 
-int logerPrivateConfig::getMaxSrcLength() const {
+int loggerPrivateConfig::getMaxSrcLength() const {
     return maxSrcLength;
 }
 
-int logerPrivateConfig::getFilteredLength() const {
+int loggerPrivateConfig::getFilteredLength() const {
     return filteredLength;
 }
 
-bool logerPrivateConfig::isHighlight() const {
+bool loggerPrivateConfig::isHighlight() const {
     return highlight_;
 }
 
-bool logerPrivateConfig::isDisableShift() const {
+bool loggerPrivateConfig::isDisableShift() const {
     return disableShift;
 }
 
-string logerPrivateConfig::handleSrc(string src) {
+string loggerPrivateConfig::handleSrc(string src) {
     bool addSrc = !src.empty();
     if(addSrc && printLogSrc){
         src +="\t";

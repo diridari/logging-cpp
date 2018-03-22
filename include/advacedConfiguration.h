@@ -8,6 +8,10 @@
 
 #include <string>
 using namespace std;
+
+/**
+ * Some advanced configurations for the Logger
+ */
 class advacedConfiguration{
 
 
@@ -58,12 +62,10 @@ public:
  * This class is only seen by the Logging class.
  *
  */
-class logerPrivateConfig : public advacedConfiguration{
+class loggerPrivateConfig : public advacedConfiguration{
 
 public:
     string handleSrc(string src);
-
-
 
     bool isPrintLogSrc() const;
 

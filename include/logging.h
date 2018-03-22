@@ -61,7 +61,6 @@ class Log {
      */
     static string highlight(LogLevel l);
     static LogLevel IntToLogLevel(int i);
-    static string handleSrc(string src);
 public:
 
 
@@ -94,6 +93,14 @@ public:
      * @return set success
      */
     static void setLogLevel(LogLevel cli, LogLevel file);
+
+    /**
+     * set the current level.
+     * if a message is equal important or more important(lower number) than this message gets printed to the cli
+     * @para cli  log level for cli
+     * @param file log level for logging to file
+     * @return set success
+     */
     static void setLogLevel(int cli, int file);
 
     /**
@@ -102,6 +109,12 @@ public:
      * @para cli  log level for cli AND file
      */
     static void setLogLevel(LogLevel cliAndFile);
+
+    /**
+     * set the current level.
+     * if a message is equal important or more important(lower number) than this message gets printed to the cli
+     * @para cli  log level for cli AND file
+     */
     static void setLogLevel(int cliAndFile);
 
 
@@ -115,7 +128,7 @@ public:
 
     /**
      * allows the set some additional  configurations
-     * @return
+     * @return advanced Configuration object
      */
     static advacedConfiguration  *advacedConf();
 

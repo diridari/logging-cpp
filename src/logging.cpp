@@ -19,7 +19,7 @@ static bool firstTimeStamp = true;
 static string logfile = "log.log";
 static system_clock::time_point startTime;
 static mutex locker;
-static logerPrivateConfig config =  logerPrivateConfig();
+static loggerPrivateConfig config =  loggerPrivateConfig();
 
 
 static string getTimeStamp()
