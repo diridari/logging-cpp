@@ -125,5 +125,4 @@ public:
 };
 
 
-
 #endif /* LOGGING_H_ */

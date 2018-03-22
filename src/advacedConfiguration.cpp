@@ -15,8 +15,8 @@ void advacedConfiguration::pintLogSrc(bool enable, unsigned int maxLength) {
 
 }
 
-void advacedConfiguration::disbaleLogSrcShift(bool disable) {
-    disableShift = disable;
+void advacedConfiguration::setSrcShift(bool enable) {
+    disableShift = !enable;
     filteredLength = 0;
 }
 void advacedConfiguration::setCliHighLight(bool enable) {
@@ -24,27 +24,27 @@ void advacedConfiguration::setCliHighLight(bool enable) {
 
 }
 
-bool advacedConfiguration::isPrintLogSrc() const {
+bool logerPrivateConfig::isPrintLogSrc() const {
     return printLogSrc;
 }
 
-int advacedConfiguration::getMaxSrcLength() const {
+int logerPrivateConfig::getMaxSrcLength() const {
     return maxSrcLength;
 }
 
-int advacedConfiguration::getFilteredLength() const {
+int logerPrivateConfig::getFilteredLength() const {
     return filteredLength;
 }
 
-bool advacedConfiguration::isHighlight() const {
+bool logerPrivateConfig::isHighlight() const {
     return highlight_;
 }
 
-bool advacedConfiguration::isDisableShift() const {
+bool logerPrivateConfig::isDisableShift() const {
     return disableShift;
 }
 
-string advacedConfiguration::handleSrc(string src) {
+string logerPrivateConfig::handleSrc(string src) {
     bool addSrc = !src.empty();
     if(addSrc && printLogSrc){
         src +="\t";

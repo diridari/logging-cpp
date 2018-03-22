@@ -12,6 +12,7 @@ public:
 };
 int main(){
     Log::setLogLevel(Message,None);
+    Log::advacedConf()->setSrcShift(true);
     exp exp;
     for(int i = 0; i<=15;i+=5) {
         Log::advacedConf()->pintLogSrc(true, i);

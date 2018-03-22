@@ -11,11 +11,12 @@ using namespace std;
 class advacedConfiguration{
 
 
-
+protected:
     int maxSrcLength;
     int filteredLength;
     bool highlight_;
     bool disableShift;
+    bool printLogSrc ;
 
 public:
     advacedConfiguration(){
@@ -23,10 +24,10 @@ public:
         printLogSrc = false;
         filteredLength = 0;
         highlight_ = true;
-        disableShift = false;
+        disableShift = true;
     }
 
-    string handleSrc(string src);
+
     /**
      * Enable or disable the src function of of log message
      * you can define a maximum length of the of the function. If the message src is longer than
@@ -37,7 +38,12 @@ public:
      */
     void pintLogSrc(bool enable = true, unsigned int maxLength = 0);
 
-    void disbaleLogSrcShift(bool disable = false);
+    /**
+     * the src-shift allows an smother view of if the source of the message is added to the Log-Message
+     *
+     * @param disable
+     */
+    void setSrcShift(bool disable = true);
 
     /**
      * enable cli highlighting.
@@ -45,7 +51,19 @@ public:
      */
     void setCliHighLight(bool enable);
 
-    bool printLogSrc ;
+
+};
+
+/**
+ * This class is only seen by the Logging class.
+ *
+ */
+class logerPrivateConfig : public advacedConfiguration{
+
+public:
+    string handleSrc(string src);
+
+
 
     bool isPrintLogSrc() const;
 
@@ -57,7 +75,5 @@ public:
 
     bool isDisableShift() const;
 };
-
-
 #endif //SIMPLELOGGING_LOGCONFIGURATION_H
 
