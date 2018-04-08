@@ -16,19 +16,19 @@ information on runtime.
 
 ## Example output 
 
-	0:0   	:User_info    : Custom Src	 : do something with default logLevel
-	0:7   	:CriticError  : magicFunction	 : not allowed parameter : -1
-	0:7   	:User_info    : main	      : do something with Message as logLevel
-	0:15  	:    Message  : heavyCalculation	 : calculation done
-	0:15  	:    Message  : magicFunction	 : magically result : abc42
-	0:16  	:CriticError  : magicFunction	 : not allowed parameter : -1
-	0:16  	:User_info    : main	      : do something with Debug as logLevel
-	0:16  	:      Debug  : magicFunction	 : got param : abc and 42
-	0:16  	:      info   : heavyCalculation	 : start heavy calc
-	0:16  	:      Debug  : heavyCalculation	 : calculation does need 6262us
-	0:23  	:    Message  : heavyCalculation	 : calculation done
-	0:23  	:    Message  : magicFunction	 : magically result : abc42
-	0:23  	:CriticError  : magicFunction	 : not allowed parameter : -1
+    0:0   	:User_info    : main	 : do somthing with default logLevel
+    0:9   	:CriticError  : magicFunction	 : not allowed parameter : -1
+    0:9   	:User_info    : main	 : do somthing with Message as logLevel
+    0:17  	:    Message  : heavyCalucuation	 : calculation done
+    0:17  	:    Message  : magicFunction	 : magically result : abc42
+    0:17  	:CriticError  : magicFunction	 : not allowed parameter : -1
+    0:17  	:User_info    : main	 : do somthing with Debug as logLevel
+    0:17  	:      Debug  : magicFunction	 : got param : abc and 42
+    0:17  	:      info   : heavyCalucuation	 : start heavy calc
+    0:17  	:      Debug  : heavyCalucuation	 : calculation does need 6262us
+    0:23  	:    Message  : heavyCalucuation	 : calculation done
+    0:23  	:    Message  : magicFunction	 : magically result : abc42
+    0:23  	:CriticError  : magicFunction	 : not allowed parameter : -1
         
 ## How to use
 for future information's see the example.
