@@ -11,7 +11,7 @@
 #include <iostream>
 #include <string>
 #include <typeinfo>
-#include "advacedConfiguration.h"
+#include "advancedConfiguration.h"
 
 using namespace std;
 
@@ -28,12 +28,12 @@ using namespace std;
  * You can set the max length of the messageSrc with "setPintLogSrc(true,<maxLength>)" or set it to unlimited with "setPintLogSrc(true,0)"
  */
 #define log(...) GET_MACRO(__VA_ARGS__,logWithSrc , logWithoutSrc)(__VA_ARGS__)
-#define logWithoutSrc(mes,lev) Log::log_(__FUNCTION__,mes,lev);
-#define logWithSrc(src,mes,lev) Log::log_(src,mes,lev);
+#define logWithoutSrc(mes,lev) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__);
+#define logWithSrc(src,mes,lev) Log::log_(src,mes,lev,__FILE__,__LINE__);
 /**
  * Log level.
  */
-enum LogLevel {
+typedef enum LogLevel {
     None = -1, 	        // Noting  just for tests
     UserInfo = 0,	    // Information for Users
     CriticError = 1,
@@ -43,7 +43,7 @@ enum LogLevel {
     Debug = 5,
     DebugL2 = 6,
     DebugL3 = 7
-};
+}LogLevel;
 
 
 static const char *const DISABLE_CLI_HIGHLIGHT = "\033[0;0m";
@@ -83,7 +83,7 @@ public:
      * @param importance of the message
      */
 
-    static void log_(string src ,string message, LogLevel l);
+    static void log_(string src ,string message, LogLevel l,string name, int line);
 
     /**
      * set the current level.
@@ -130,7 +130,7 @@ public:
      * allows the set some additional  configurations
      * @return advanced Configuration object
      */
-    static advacedConfiguration  *advacedConf();
+    static advancedConfiguration  *advancedConf();
 
 
 

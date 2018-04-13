@@ -2,17 +2,23 @@
 // Created by basti on 16.03.2018.
 //
 
-#ifndef SIMPLELOGGING_LOGCONFIGURATION_H
-#define SIMPLELOGGING_LOGCONFIGURATION_H
+
+
+
+#ifndef ADVANCEDCONFIG_H
+#define ADVANCEDCONFIG_H
 
 
 #include <string>
+
+
+
 using namespace std;
 
 /**
  * Some advanced configurations for the Logger
  */
-class advacedConfiguration{
+class advancedConfiguration{
 
 
 protected:
@@ -22,8 +28,9 @@ protected:
     bool disableShift;
     bool printLogSrc ;
 
+
 public:
-    advacedConfiguration(){
+    advancedConfiguration(){
         maxSrcLength = 0;
         printLogSrc = false;
         filteredLength = 0;
@@ -62,7 +69,7 @@ public:
  * This class is only seen by the Logging class.
  *
  */
-class loggerPrivateConfig : public advacedConfiguration{
+class loggerPrivateConfig : public advancedConfiguration{
 
 public:
     string handleSrc(string src);
@@ -77,5 +84,5 @@ public:
 
     bool isDisableShift() const;
 };
-#endif //SIMPLELOGGING_LOGCONFIGURATION_H
+#endif //ADVANCEDCONFIG_H
 

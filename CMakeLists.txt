@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 project(SimpleLogging)
 
 include_directories(include)
-set (src include/logging.h src/logging.cpp include/advacedConfiguration.h src/advacedConfiguration.cpp)
+set (src include/logging.h src/logging.cpp include/advancedConfiguration.h src/advancedConfiguration.cpp)
 set(CMAKE_CXX_STANDARD 11)
 
 

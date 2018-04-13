@@ -3,23 +3,23 @@
 //
 
 
-#include <advacedConfiguration.h>
+#include <advancedConfiguration.h>
 
 
 
 
-void advacedConfiguration::pintLogSrc(bool enable, unsigned int maxLength) {
+void advancedConfiguration::pintLogSrc(bool enable, unsigned int maxLength) {
     maxSrcLength = maxLength;
     printLogSrc = enable;
     filteredLength = 0;
 
 }
 
-void advacedConfiguration::setSrcShift(bool enable) {
+void advancedConfiguration::setSrcShift(bool enable) {
     disableShift = !enable;
     filteredLength = 0;
 }
-void advacedConfiguration::setCliHighLight(bool enable) {
+void advancedConfiguration::setCliHighLight(bool enable) {
     highlight_ = enable;
 
 }

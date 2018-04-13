@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 int main() {
-    Log::advacedConf()->pintLogSrc(false);
+    Log::advancedConf()->pintLogSrc(false);
     // Log level cli and log level file are equal ->
     // each message printed to the file gets printed to the logfile
     Log::setLogLevel(Debug);
@@ -45,7 +45,7 @@ int main() {
 
     usleep(10000);
     // disable the cli highlighting
-    Log::advacedConf()->setCliHighLight(false);
+    Log::advancedConf()->setCliHighLight(false);
     Log::log("CriticError with out highlighting",CriticError);
     return 0;
 }

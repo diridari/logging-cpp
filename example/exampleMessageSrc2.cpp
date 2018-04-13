@@ -13,7 +13,7 @@
 int main(){
 
     Log::setLogLevel(Message,None);
-    Log::advacedConf()->pintLogSrc(true);
+    Log::advancedConf()->pintLogSrc(true);
     Log::log("just a long message src", "Do you not also think ", Message);
     Log::log("", "that it's hard to read a log file where loggSrc", Message);
 
@@ -22,7 +22,7 @@ int main(){
     Log::log("verrrry Long and important Log Src ", "not want to disable it. But",Message);
     Log::log("","you also like to have a readable logfile?\n\n",Message);
 
-    Log::advacedConf()->setSrcShift(true);
+    Log::advancedConf()->setSrcShift(true);
     Log::log("enabled SrcShift for a better veiw",Error);
     Log::log("shortSrc","Then let me tell you that",Message);
     Log::log("very long function  abcedghijkl", "it is possible to set the length of the LogSrc so that the logfile is",Message);

@@ -50,14 +50,23 @@ void openLogWriter(fstream **writer) {
 
 
 
-void Log::log_(string src, string message, LogLevel l) {
+void Log::log_(string src, string message, LogLevel l,string name, int line) {
     locker.lock();
 
     src = config.handleSrc(src);
 
     string log = getTimeStamp() + logLevelToString(l)  + src   + message;
 
-
+    if(l<=Error)
+        log += "\n\t\t\t\t from :\t " + (name)+ ":"+to_string(line);
+    // write to logfile
+    if (l <= logFileLevel)
+    {
+        if (!loggerIsOpen)
+            openLogWriter(&logWriter);
+        *logWriter <<   log << endl;
+        logWriter->flush();
+    }
     // write to cli
     if (l <= level){
         string tmp = highlight(l) + log;
@@ -71,7 +80,7 @@ void Log::log_(string src, string message, LogLevel l) {
 }
 
 void Log::log_(string message, LogLevel l){
-    log_("",message,l);
+    log_("",message,l,"",-1);
 }
 
 
@@ -184,7 +193,7 @@ void Log::setLogLevel(int cliAndFile) {
 
 
 
-advacedConfiguration * Log::advacedConf() {
+advancedConfiguration * Log::advancedConf() {
     return &config;
 }
 
