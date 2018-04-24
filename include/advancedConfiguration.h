@@ -12,9 +12,7 @@
 #include <string>
 
 
-
 using namespace std;
-
 /**
  * Some advanced configurations for the Logger
  */
@@ -61,6 +59,8 @@ public:
      * @param enable
      */
     void setCliHighLight(bool enable);
+
+
 
 
 };

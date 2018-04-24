@@ -20,7 +20,8 @@ static string logfile = "log.log";
 static system_clock::time_point startTime;
 static mutex locker;
 static loggerPrivateConfig config =  loggerPrivateConfig();
-
+static unsigned int pointsOfIntressed = 0;
+static LogLevel printLineIf = Error;
 
 static string getTimeStamp()
 {
@@ -29,7 +30,6 @@ static string getTimeStamp()
         firstTimeStamp = false;
         startTime = chrono::high_resolution_clock::now();
     }
-
     auto current_time = std::chrono::high_resolution_clock::now();
     string s = to_string(std::chrono::duration_cast<std::chrono::seconds>(current_time - startTime).count()) + ":";
     s += to_string(std::chrono::duration_cast<std::chrono::milliseconds>(current_time - startTime).count() % 1000);
@@ -50,33 +50,35 @@ void openLogWriter(fstream **writer) {
 
 
 
-void Log::log_(string src, string message, LogLevel l,string name, int line) {
-    locker.lock();
+void Log::log_(string src, string message, LogLevel l,string name, int line, int intr) {
+    if(isInPointOfIntressed(intr)) {
+        locker.lock();
+        src = config.handleSrc(src);
+        string log;
+        if(l != UserInfo)
+            log  = getTimeStamp() + logLevelToString(l) + src + message;
+        else
+            log = message;
 
-    src = config.handleSrc(src);
-
-    string log = getTimeStamp() + logLevelToString(l)  + src   + message;
-
-    if(l<=Error)
-        log += "\n\t\t\t\t from :\t " + (name)+ ":"+to_string(line);
-    // write to logfile
-    if (l <= logFileLevel)
-    {
-        if (!loggerIsOpen)
-            openLogWriter(&logWriter);
-        *logWriter <<   log << endl;
-        logWriter->flush();
-    }
-    // write to cli
-    if (l <= level){
-        string tmp = highlight(l) + log;
-        if(highlight){
-            tmp += DISABLE_CLI_HIGHLIGHT;
+        if (l <= printLineIf && l != LogLevel::UserInfo)
+            log += "\n\t\t\t\t from :\t " + (name) + ":" + to_string(line);
+        // write to logfile
+        if (l <= logFileLevel) {
+            if (!loggerIsOpen)
+                openLogWriter(&logWriter);
+            *logWriter << log << endl;
+            logWriter->flush();
         }
-        cout <<  tmp <<"\n";
+        // write to cli
+        if (l <= level) {
+            string tmp = highlight(l) + log;
+            if (highlight) {
+                tmp += DISABLE_CLI_HIGHLIGHT;
+            }
+            cout << tmp << "\n";
+        }
+        locker.unlock();
     }
-
-    locker.unlock();
 }
 
 void Log::log_(string message, LogLevel l){
@@ -219,6 +221,18 @@ LogLevel Log::stringToLogLevel(string toConvert) {
 
 void Log::setLogLevel(string cliAndFile) {
     setLogLevel(stringToLogLevel(cliAndFile));
+}
+
+void Log::setPointOfIntressed(unsigned int points) {
+    pointsOfIntressed = points;
+}
+
+bool Log::isInPointOfIntressed(unsigned int toCheck) {
+    return (toCheck & pointsOfIntressed) >0 || toCheck == 0 || pointsOfIntressed == 0;
+}
+
+void Log::printSrcLine(LogLevel l) {
+    printLineIf = l;
 }
 
 

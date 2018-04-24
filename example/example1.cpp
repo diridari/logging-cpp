@@ -44,7 +44,7 @@ class abc{
 int main(){
     abc a;
     Log::advancedConf()->pintLogSrc(true, 0);
-    Log::log("Custom Src","do something with default logLevel",UserInfo);
+    Log::log("do something with default logLevel",UserInfo);
     a.magicFunction("abc",42);
     a.magicFunction("hello world",-1);
 
@@ -57,5 +57,14 @@ int main(){
     Log::log("do something with Debug as logLevel",UserInfo);
     a.magicFunction("abc",42);
     a.magicFunction("hello world",-1);
+
+    ///////////////////////////////////////
+    // Change the level where the Src line gets printed
+    ///////////////////////////////////////
+    Log::log("\n\nChange the level in which the src line is displayed",UserInfo);
+    Log::printSrcLine(Message);
+    Log::log("Src line are now printed even at Messages-Level",Message)
+    Log::printSrcLine(CriticError);
+    Log::log("Src line are not anymore printed at Error-Messages",Error)
 
 }

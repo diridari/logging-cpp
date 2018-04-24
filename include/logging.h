@@ -27,9 +27,9 @@ using namespace std;
  * The src of the message gets logged if "setPintLogSrc(true)".
  * You can set the max length of the messageSrc with "setPintLogSrc(true,<maxLength>)" or set it to unlimited with "setPintLogSrc(true,0)"
  */
-#define log(...) GET_MACRO(__VA_ARGS__,logWithSrc , logWithoutSrc)(__VA_ARGS__)
+#define log(...) GET_MACRO(__VA_ARGS__,logWithitIntresed , logWithoutSrc)(__VA_ARGS__)
 #define logWithoutSrc(mes,lev) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__);
-#define logWithSrc(src,mes,lev) Log::log_(src,mes,lev,__FILE__,__LINE__);
+#define logWithitIntresed(mes,lev,intr) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__,intr);
 /**
  * Log level.
  */
@@ -63,6 +63,9 @@ class Log {
     static LogLevel IntToLogLevel(int i);
 
     static LogLevel stringToLogLevel(string toConvert);
+
+    static bool isInPointOfIntressed(unsigned int toCheck);
+
 public:
 
 
@@ -85,7 +88,7 @@ public:
      * @param importance of the message
      */
 
-    static void log_(string src ,string message, LogLevel l,string name, int line);
+    static void log_(string src ,string message, LogLevel l,string name, int line, int intresed = 0);
 
     /**
      * set the current level.
@@ -143,13 +146,34 @@ public:
 
 
     /**
+     * advanced configuration.
      * allows the set some additional  configurations
      * @return advanced Configuration object
      */
     static advancedConfiguration  *advancedConf();
 
+    /**
+     * Filter Logmesages by the point of you interested.
+     * Each logmessage where the flag (and the loglevel) match with the configured flag gets printed.
+     * Each logmessage where the flag do not match get discared
+     * This can be used to reduce the amount of log infmations.
+     * print all messages use -1 or 0
+     *
+     * e.g pointOfInterested = 0b1010
+     * log("",Error,0b0); // gets printed because of point = 0
+     * log("",Error,0b1); // gets not printed
+     * log("",Error,0b10); // gets printed
+     *
+     * @param points falg to check
+     */
+    static void setPointOfIntressed(unsigned int points = 0);
 
 
+    /**
+     * print the src line informatione if the level of the message is <= the given value
+     * @param l
+     */
+    static void printSrcLine(LogLevel l);
 
 };
 
