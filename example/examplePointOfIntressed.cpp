@@ -27,12 +27,12 @@ int main(){
     Log::setLogLevel(Message,Message);
     // single point
     for(int i = 0; i<4; i++){
-       Log::setPointOfIntressed(1<<i);
+        Log::setPointOfInterest(1 << i);
        runSomeLogMessagesWithDifferentPointsOfIntr();
     }
     // multiple points
     for(int i = 0; i<4; i++){
-        Log::setPointOfIntressed(1<<i | 1<<10);
+        Log::setPointOfInterest(1 << i | 1 << 10);
         runSomeLogMessagesWithDifferentPointsOfIntr();
     }
 

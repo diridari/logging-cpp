@@ -153,7 +153,8 @@ public:
     static advancedConfiguration  *advancedConf();
 
     /**
-     * Filter Logmesages by the point of you interested.
+     * Point of Interest.
+     * Filter Log mesages by the point of you interested.
      * Each logmessage where the flag (and the loglevel) match with the configured flag gets printed.
      * Each logmessage where the flag do not match get discared
      * This can be used to reduce the amount of log infmations.
@@ -166,7 +167,7 @@ public:
      *
      * @param points falg to check
      */
-    static void setPointOfIntressed(unsigned int points = 0);
+    static void setPointOfInterest(unsigned int points = 0);
 
 
     /**

@@ -16,19 +16,13 @@ information on runtime.
 
 ## Example output 
 
-	0:0   	:User_info    : Custom Src	 : do something with default logLevel
-	0:7   	:CriticError  : magicFunction	 : not allowed parameter : -1
-	0:7   	:User_info    : main	      : do something with Message as logLevel
-	0:15  	:    Message  : heavyCalculation	 : calculation done
-	0:15  	:    Message  : magicFunction	 : magically result : abc42
-	0:16  	:CriticError  : magicFunction	 : not allowed parameter : -1
-	0:16  	:User_info    : main	      : do something with Debug as logLevel
-	0:16  	:      Debug  : magicFunction	 : got param : abc and 42
-	0:16  	:      info   : heavyCalculation	 : start heavy calc
-	0:16  	:      Debug  : heavyCalculation	 : calculation does need 6262us
-	0:23  	:    Message  : heavyCalculation	 : calculation done
-	0:23  	:    Message  : magicFunction	 : magically result : abc42
-	0:23  	:CriticError  : magicFunction	 : not allowed parameter : -1
+	0:11  	:      Debug  : magicFunction	 : got param : abc and 42
+    0:11  	:      info   : heavyCalculation	 : start heavy calc
+    0:11  	:      Debug  : heavyCalculation	 : calculation does need 2777us
+    0:14  	:    Message  : heavyCalculation	 : calculation done
+    0:14  	:    Message  : magicFunction	 : magically result : abc42
+    0:14  	:CriticError  : magicFunction	 : not allowed parameter : -1
+    				 from :	 ....SimpleLogging/example/example1.cpp:33
         
 ## How to use
 for future information's see the example.
@@ -38,7 +32,7 @@ write a log message is very simple:
     Log::log(message,importance);
 or
 
-    Log::log(src,message,importance);
+    Log::log(message,importance,point_of_interest);
         
 If the configured log level is lower than the importance of this message the the message gets printed to the cli and to 
 the logfile (if enabled).
@@ -46,11 +40,10 @@ the logfile (if enabled).
 E.g
 
     Log::log("something awful happen :( ",Error);
-    Log::log("src of message",""something awful happen :( ",Error);
 would result:
 
     0:21  	:  Error      : something awful happen :(
-    0:21  	:  Error      : src of message  :  something awful happen :(
+
   
 ### setLogLevel
 with this function you can change the amount of information witch gets printed to the cli or tho the logfile.
@@ -59,15 +52,22 @@ This functions is overloaded with:
 
     setLogLevel(LogLevel cli, LogLevel file) 
     setLogLevel(LogLevel cliAndFile)
+
 This first function sets the logLevel for the logfile and the cli logging individual.
 The second function set both log levels equals.
 
 alternative you can use setLogLevel() with int values
 
     setLogLevel(3,-1); // cli = Message file = none
-By default writing to an logfile is disabled until the log level != None
 
-    
+or with Strings
+
+     setLogLevel("Error")
+
+By default writing to an logfile is disabled until the logfile level != None
+
+
+
 ### Log Levels
 Possible log level with decreasing priority
 
@@ -100,6 +100,30 @@ Because of fun the is a cli highlighting.
 If cause a issue you can disable it by 
 
     setCliHighLight(bool)
+
+### Point of interest
+The point of interest is a runtime filter function which discard log messages where the current point is not given.
+Each point shall have its own flag-bit. By setting all flag-bits which you like to have in you logfile you can adjust the filter.
+
+e.g.
+    you are searching a bug in in an IO-drive then you are not interested in log messages from on complete other module.
+    If each logical module has its own flag you can adjust the filter to all modules you like the see in the logfile.
+
+Of course a log message can have several point of interest.
+
+    #define interest1 1<<3
+    #define Interest2 1<<4
+    #define Interest3 1<<5
+
+    Log::setPointOfInterest(interest1 | Interest2); // just messages with the point_of_interest 1 or 2
+    Log::log("not printed",Message,Interest3);
+    Log::log("printed",Message,Interest3 | interest1);
+    Log::log("printed",Message, interest1);
+    Log::log("always printed",Message, 0); // or -1
+
+ To enable all point_of_interest you can set the point to -1 or 0.
+
+ A Log Message with the point_of_interest = 0 gets printed no matter what the current configured point_of_interest is.
     
 ### Default configuration
 The default configuration is : 
@@ -108,6 +132,7 @@ The default configuration is :
     log File level = None;
     cli highlight = true;
     log File Name = "log.log";
+    point_of_interest = 0; // no point
     
  ***
  # Build

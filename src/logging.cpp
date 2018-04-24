@@ -20,7 +20,7 @@ static string logfile = "log.log";
 static system_clock::time_point startTime;
 static mutex locker;
 static loggerPrivateConfig config =  loggerPrivateConfig();
-static unsigned int pointsOfIntressed = 0;
+static unsigned int pointsOfInterest = 0;
 static LogLevel printLineIf = Error;
 
 static string getTimeStamp()
@@ -223,12 +223,12 @@ void Log::setLogLevel(string cliAndFile) {
     setLogLevel(stringToLogLevel(cliAndFile));
 }
 
-void Log::setPointOfIntressed(unsigned int points) {
-    pointsOfIntressed = points;
+void Log::setPointOfInterest(unsigned int points) {
+    pointsOfInterest = points;
 }
 
 bool Log::isInPointOfIntressed(unsigned int toCheck) {
-    return (toCheck & pointsOfIntressed) >0 || toCheck == 0 || pointsOfIntressed == 0;
+    return (toCheck & pointsOfInterest) >0 || toCheck == 0 || pointsOfInterest == 0;
 }
 
 void Log::printSrcLine(LogLevel l) {
