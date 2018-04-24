@@ -197,4 +197,28 @@ advancedConfiguration * Log::advancedConf() {
     return &config;
 }
 
+void Log::setLogLevel(string cli, string file) {
+    setLogLevel(stringToLogLevel(cli),stringToLogLevel(file));
+}
+
+LogLevel Log::stringToLogLevel(string toConvert) {
+
+    if(toConvert == "None")         return None;
+    if(toConvert == "UserInfo")     return UserInfo;
+    if(toConvert == "CriticError")  return CriticError;
+    if(toConvert == "Error")        return Error;
+    if(toConvert == "Message")      return Message;
+    if(toConvert == "Info")         return Info;
+    if(toConvert == "Debug")        return Debug;
+    if(toConvert == "DebugL2")      return DebugL2;
+    if(toConvert == "DebugL3")      return DebugL3;
+
+    Log::log("unknown loglevel string "  + toConvert,CriticError);
+
+}
+
+void Log::setLogLevel(string cliAndFile) {
+    setLogLevel(stringToLogLevel(cliAndFile));
+}
+
 
