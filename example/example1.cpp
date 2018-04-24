@@ -63,8 +63,8 @@ int main(){
     ///////////////////////////////////////
     Log::log("\n\nChange the level in which the src line is displayed",UserInfo);
     Log::printSrcLine(Message);
-    Log::log("Src line are now printed even at Messages-Level",Message)
+    Log::log("message src line are now printed even at Messages-Level",Message)
     Log::printSrcLine(CriticError);
-    Log::log("Src line are not anymore printed at Error-Messages",Error)
+    Log::log("message src line are not anymore printed at Error-Messages",Error)
 
 }
