@@ -27,9 +27,9 @@ using namespace std;
  * The src of the message gets logged if "setPintLogSrc(true)".
  * You can set the max length of the messageSrc with "setPintLogSrc(true,<maxLength>)" or set it to unlimited with "setPintLogSrc(true,0)"
  */
-#define log(...) GET_MACRO(__VA_ARGS__,logWithitIntresed , logWithoutSrc)(__VA_ARGS__)
-#define logWithoutSrc(mes,lev) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__);
-#define logWithitIntresed(mes,lev,intr) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__,intr);
+#define log(...) GET_MACRO(__VA_ARGS__,logWithInterest , logWithoutInterest)(__VA_ARGS__)
+#define logWithoutInterest(mes,lev) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__);
+#define logWithInterest(mes,lev,interest) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__,interest);
 /**
  * Log level.
  */
@@ -88,7 +88,7 @@ public:
      * @param importance of the message
      */
 
-    static void log_(string src ,string message, LogLevel l,string name, int line, int intresed = 0);
+    static void log_(string src ,string message, LogLevel l,string name, int line, unsigned int interest = 0);
 
     /**
      * set the current level.

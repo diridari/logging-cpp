@@ -50,8 +50,8 @@ void openLogWriter(fstream **writer) {
 
 
 
-void Log::log_(string src, string message, LogLevel l,string name, int line, int intr) {
-    if(isInPointOfIntressed(intr)) {
+void Log::log_(string src, string message, LogLevel l,string name, int line, unsigned int interest) {
+    if(isInPointOfIntressed(interest)) {
         locker.lock();
         src = config.handleSrc(src);
         string log;
