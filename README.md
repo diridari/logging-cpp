@@ -25,7 +25,7 @@ information on runtime.
     				 from :	 ....SimpleLogging/example/example1.cpp:33
         
 ## How to use
-for future information's see the example.
+for further  information's see the example.
 ### Log something
 write a log message is very simple:
 
