@@ -4,7 +4,7 @@
 This project has the goal to implement a simple logging mechanism where it is possible to adjust the amount of 
 information on runtime.
 
-## Futures
+## Features
 * Set 9 individual and configurable log levels
 * Print message the the cli and/or to an logfile
 * Change the location and name of the logfile
