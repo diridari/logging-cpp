@@ -6,11 +6,11 @@ information on runtime.
 
 ## Futures
 * Set 9 individual and configurable log levels
-* print message the the cli and/or to an logfile
-* change the location and name of the logfile
-* logfile and cli logging can have individual log levels 
-* cli highlighting (can be disabled) 
-* define up to 32 point of interest 
+* Print message the the cli and/or to an logfile
+* Change the location and name of the logfile
+* Logfile and cli logging can have individual log levels 
+* Cli highlighting (can be disabled) 
+* Define up to 32 point of interest 
 
 
 ***
