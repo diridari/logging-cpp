@@ -22,7 +22,7 @@ information on runtime.
     0:14  	:    Message  : heavyCalculation	 : calculation done
     0:14  	:    Message  : magicFunction	 : magically result : abc42
     0:14  	:CriticError  : magicFunction	 : not allowed parameter : -1
-    				 from :	 ....SimpleLogging/example/example1.cpp:33
+    				 from :	 /xxx/SimpleLogging/example/example1.cpp:33
         
 ## How to use
 for further  information's see the example.
