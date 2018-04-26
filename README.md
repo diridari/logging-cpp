@@ -1,7 +1,7 @@
 # Simple Logfile Writer
 
 ## Goals
-This project has the goal to implement a simple logging mechanism where it is possible to change the amount of 
+This project has the goal to implement a simple logging mechanism where it is possible to adjust the amount of 
 information on runtime.
 
 ## Futures
@@ -10,6 +10,7 @@ information on runtime.
 * change the location and name of the logfile
 * logfile and cli logging can have individual log levels 
 * cli highlighting (can be disabled) 
+* define up to 32 point of interest 
 
 
 ***
@@ -25,9 +26,9 @@ information on runtime.
     				 from :	 /xxx/SimpleLogging/example/example1.cpp:33
         
 ## How to use
-for further  information's see the example.
+For further  information's see the example.
 ### Log something
-write a log message is very simple:
+Write a log message is very simple:
 
     Log::log(message,importance);
 or
@@ -46,7 +47,7 @@ would result:
 
   
 ### setLogLevel
-with this function you can change the amount of information witch gets printed to the cli or tho the logfile.
+With this function you can change the amount of information witch gets printed to the cli or tho the logfile.
 
 This functions is overloaded with:
 
@@ -97,7 +98,7 @@ If an logfile is already used the old file gets closed with a hint to the new lo
 A new logfile gets opened with the next to its written log message.
 ### Cli Highlighting 
 Because of fun the is a cli highlighting. 
-If cause a issue you can disable it by 
+If this cause a issue you can disable it by 
 
     setCliHighLight(bool)
 
