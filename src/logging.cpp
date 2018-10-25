@@ -51,7 +51,7 @@ void openLogWriter(fstream **writer) {
 
 
 void Log::log_(string src, string message, LogLevel l,string name, int line, unsigned int interest) {
-    if(isInPointOfIntressed(interest)) {
+    if(isInPointOfInterest(interest)) {
         locker.lock();
         src = config.handleSrc(src);
         string log;
@@ -227,7 +227,7 @@ void Log::setPointOfInterest(unsigned int points) {
     pointsOfInterest = points;
 }
 
-bool Log::isInPointOfIntressed(unsigned int toCheck) {
+bool Log::isInPointOfInterest(unsigned int toCheck) {
     return (toCheck & pointsOfInterest) >0 || toCheck == 0 || pointsOfInterest == 0;
 }
 

@@ -72,7 +72,7 @@ By default writing to an logfile is disabled until the logfile level != None
 ### Log Levels
 Possible log level with decreasing priority
 
-    None                // int value <-1>   Print absolut Noting
+    None                // int value <-1>   Print absolute Noting
     UserInfo            // int value <0>    Information for Users
     CriticError         // int value <1>     bet .. 
     Error               // ..
@@ -155,7 +155,7 @@ The default configuration is :
     )
     ExternalProject_Get_Property(simpleLogging SOURCE_DIR)
     ExternalProject_Get_Property(simpleLogging BINARY_DIR)
-    include_directories(${SOURCE_DIR}/include) # include simpleLog/inlude
+    include_directories(${SOURCE_DIR}/include) # include simpleLog/include
     LINK_DIRECTORIES(${BINARY_DIR}) ## link git build lib
     add_subdirectory(${SOURCE_DIR})
 	...

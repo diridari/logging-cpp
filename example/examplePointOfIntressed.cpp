@@ -1,5 +1,5 @@
 //
-// Created by basto on 4/24/18.
+// Created by Sebastian Balz on 4/24/18.
 //
 
 #include <iostream>
@@ -14,12 +14,12 @@
 using namespace std;
 
 void runSomeLogMessagesWithDifferentPointsOfIntr(){
-    Log::log("point of intressed : 0",Message);        // gets printed in each run
-    Log::log("point of intressed : 1",Message,1);      // just if the flag is set to 0bXXXXXX1
-    Log::log("point of intressed : 2",Message,intr_2);  // just if the flag is set to 0bXXXXX1X
-    Log::log("point of intressed : 3",Message,intr_3);  // just if the flag is set to 0bXXXX1XX
-    Log::log("point of intressed : 4",Message,intr_4);
-    Log::log("point of intressed : 5",Message,intr_5);
+    Log::log("point of interest : 0",Message);        // gets printed in each run
+    Log::log("point of interest : 1",Message,1);      // just if the flag is set to 0bXXXXXX1
+    Log::log("point of interest : 2",Message,intr_2);  // just if the flag is set to 0bXXXXX1X
+    Log::log("point of interest : 3",Message,intr_3);  // just if the flag is set to 0bXXXX1XX
+    Log::log("point of interest : 4",Message,intr_4);
+    Log::log("point of interest : 5",Message,intr_5);
 
 }
 int main(){

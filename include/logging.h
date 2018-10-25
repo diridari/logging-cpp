@@ -55,8 +55,8 @@ class Log {
      */
     static string logLevelToString(LogLevel l);
     /**
-     * set the cli highlight coresponding to the  loglevel
-     * @param l  loglevel to determ cli collore
+     * set the cli highlight corresponding to the  loglevel
+     * @param l  loglevel to determine cli color
      * @return cli command to highlight the following text
      */
     static string highlight(LogLevel l);
@@ -64,7 +64,7 @@ class Log {
 
     static LogLevel stringToLogLevel(string toConvert);
 
-    static bool isInPointOfIntressed(unsigned int toCheck);
+    static bool isInPointOfInterest(unsigned int toCheck);
 
 public:
 
@@ -155,9 +155,9 @@ public:
     /**
      * Point of Interest.
      * Filter Log mesages by the point of you interested.
-     * Each logmessage where the flag (and the loglevel) match with the configured flag gets printed.
-     * Each logmessage where the flag do not match get discared
-     * This can be used to reduce the amount of log infmations.
+     * Each log message where the flag (and the loglevel) match with the configured flag gets printed.
+     * Each log message where the flag do not match get discard
+     * This can be used to reduce the amount of log information.
      * print all messages use -1 or 0
      *
      * e.g pointOfInterested = 0b1010
@@ -165,13 +165,13 @@ public:
      * log("",Error,0b1); // gets not printed
      * log("",Error,0b10); // gets printed
      *
-     * @param points falg to check
+     * @param points flag to check
      */
     static void setPointOfInterest(unsigned int points = 0);
 
 
     /**
-     * print the src line informatione if the level of the message is <= the given value
+     * print the src line information if the level of the message is <= the given value
      * @param l
      */
     static void printSrcLine(LogLevel l);
