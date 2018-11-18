@@ -7,8 +7,9 @@
 
 #include <logging.h>
 #include <unistd.h>
-
+#include <windows.h>
 int main() {
+
     Log::advancedConf()->pintLogSrc(false);
     // Log level cli and log level file are equal ->
     // each message printed to the file gets printed to the logfile

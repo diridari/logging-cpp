@@ -12,7 +12,9 @@
 #include <string>
 #include <typeinfo>
 #include "advancedConfiguration.h"
-
+#ifdef __WIN32
+    #include <windows.h>
+#endif
 using namespace std;
 
 /**
@@ -45,9 +47,11 @@ typedef enum LogLevel {
     DebugL3 = 7
 }LogLevel;
 
-
+#ifdef __linux__
 static const char *const DISABLE_CLI_HIGHLIGHT = "\033[0;0m";
-
+#elif __WIN32__
+static const char *const DISABLE_CLI_HIGHLIGHT ="\e[0m";
+#endif
 class Log {
 
     /**
@@ -59,11 +63,11 @@ class Log {
      * @param l  loglevel to determine cli color
      * @return cli command to highlight the following text
      */
-    static string highlight(LogLevel l);
+    static void highlight(LogLevel l);
     static LogLevel IntToLogLevel(int i);
 
     static LogLevel stringToLogLevel(string toConvert);
-
+    static void resetCLIToDefault();
     static bool isInPointOfInterest(unsigned int toCheck);
 
 public:
