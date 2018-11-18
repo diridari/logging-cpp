@@ -7,7 +7,6 @@
 
 #include <logging.h>
 #include <unistd.h>
-#include <windows.h>
 int main() {
 
     Log::advancedConf()->pintLogSrc(false);
