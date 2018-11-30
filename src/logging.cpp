@@ -72,8 +72,9 @@ void Log::log_(string src, string message, LogLevel l,string name, int line, uns
             logWriter->flush();
         }
         // write to cli
-        highlight(l);
+
         if (l <= level) {
+            highlight(l);
             cout << log << "\n";
             if (highlight) {
                 resetCLIToDefault();
