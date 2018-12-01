@@ -6,11 +6,11 @@ information on runtime.
 
 ## Features
 * Set 9 individual and configurable log levels
-* Print message the the cli and/or to an logfile
+* Print message to cli and/or to an logfile
 * Change the location and name of the logfile
 * Logfile and cli logging can have individual log levels 
 * Cli highlighting (can be disabled) 
-* Define up to 32 point of interest 
+* Define up to 32 point of interest(filters messages) 
 
 
 ***
