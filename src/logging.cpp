@@ -39,8 +39,6 @@ static string getTimeStamp()
     return s;
 
 }
-
-
 void openLogWriter(fstream **writer) {
     *writer = new fstream();
     (*writer)->open(logfile, ofstream::trunc | ofstream::out);
@@ -72,13 +70,12 @@ void Log::log_(string src, string message, LogLevel l,string name, int line, uns
             logWriter->flush();
         }
         // write to cli
-
         if (l <= level) {
-            highlight(l);
-            cout << log << "\n";
+            string tmp = highlight(l) + log;
             if (highlight) {
-                resetCLIToDefault();
+                tmp += DISABLE_CLI_HIGHLIGHT;
             }
+            cout << tmp << "\n";
         }
         locker.unlock();
     }
@@ -135,78 +132,39 @@ string Log::logLevelToString(LogLevel l)
             return ":    Debug L2 : ";
         case DebugL3:
             return ":     Debug L3: ";
-        default	: return "unknown Level";
+        default	: Log::log ("unknown Level" + l,UserInfo);return "unknown Level";
     }
 
 }
 
-void Log::resetCLIToDefault() {
-#ifdef __linux__
-    cout << DISABLE_CLI_HIGHLIGHT;
-#elif __WIN32
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15 );
-#endif
-}
-
-#ifdef __WIN32
-void Log::highlight(LogLevel l) {
-    if (config.isHighlight()) {
-        switch (l) {
-            case None:
-                break;;
-            case UserInfo:
-                break;
-            case CriticError:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 78);
-                break;
-            case Error:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-                break;
-            case Message:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
-                break;
-            case Info:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
-                break;
-            case Debug:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-                break;
-            case DebugL2:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
-                break;
-            case DebugL3:
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
-                break;
-        }
-    }
-}
-#endif
-
-#ifdef __linux__
-void Log::highlight(LogLevel l) {
+string Log::highlight(LogLevel l) {
     if(config.isHighlight()) {
         switch (l) {
-            case None: break;
-            case UserInfo: break;
+            case None:
+                return "";
+            case UserInfo:
+                return "";
             case CriticError:
-                cout<< "\033[1;31m";break;
+                return "\033[1;31m";
             case Error:
-                cout<< "\033[1;32m";break;
+                return "\033[1;32m";
             case Message:
-                cout<< "\033[0;33m";break;
+                return "\033[0;33m";
             case Info:
-                cout<< "\033[0;34m";break;
+                return "\033[0;34m";
             case Debug:
-                cout<< "\033[0;37m";break;
+                return "\033[0;37m";
             case DebugL2:
-                cout<< "\033[0;37m";break;
+                return "\033[0;37m";
             case DebugL3:
-                cout<< "\033[2;37m";break;
+                return "\033[2;37m";
         }
-
     }
+    return "";
+
 }
-#endif
+
+
 
 
 void Log::setLogLevel(int cli, int file) {
@@ -258,7 +216,7 @@ LogLevel Log::stringToLogLevel(string toConvert) {
     if(toConvert == "DebugL3")      return DebugL3;
 
     Log::log("unknown loglevel string "  + toConvert,CriticError);
-    return DebugL3;
+
 }
 
 void Log::setLogLevel(string cliAndFile) {
