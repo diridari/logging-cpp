@@ -72,7 +72,7 @@ void Log::log_(string src, string message, LogLevel l,string name, int line, uns
         // write to cli
         if (l <= level) {
             string tmp = highlight(l) + log;
-            if (highlight) {
+            if (config.isHighlight()) {
                 tmp += DISABLE_CLI_HIGHLIGHT;
             }
             cout << tmp << "\n";
