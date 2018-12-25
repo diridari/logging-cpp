@@ -1,4 +1,4 @@
-# Simple Logfile Writer
+# Simple Logfile Writer [![Build Status](https://travis-ci.org/diridari/logging-cpp.svg?branch=master)](https://travis-ci.org/diridari/logging-cpp)
 
 ## Goals
 This project has the goal to implement a simple logging mechanism where it is possible to adjust the amount of 
