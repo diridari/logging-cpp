@@ -13,10 +13,11 @@
 
 
 using namespace std;
+
 /**
  * Some advanced configurations for the Logger
  */
-class advancedConfiguration{
+class advancedConfiguration {
 
 
 protected:
@@ -24,11 +25,11 @@ protected:
     int filteredLength;
     bool highlight_;
     bool disableShift;
-    bool printLogSrc ;
+    bool printLogSrc;
 
 
 public:
-    advancedConfiguration(){
+    advancedConfiguration() {
         maxSrcLength = 0;
         printLogSrc = false;
         filteredLength = 0;
@@ -61,15 +62,13 @@ public:
     void setCliHighLight(bool enable);
 
 
-
-
 };
 
 /**
  * This class is only seen by the Logging class.
  *
  */
-class loggerPrivateConfig : public advancedConfiguration{
+class loggerPrivateConfig : public advancedConfiguration {
 
 public:
     string handleSrc(string src);
@@ -84,5 +83,6 @@ public:
 
     bool isDisableShift() const;
 };
+
 #endif //ADVANCEDCONFIG_H
 

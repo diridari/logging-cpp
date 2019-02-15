@@ -5,31 +5,31 @@ compiler:
 env:
   global:
     - RUN_TESTS=true
-    
-os:
- - linux
-before_install:
- - sudo apt-get -qq update
- - sudo apt install cmake
- - cd "${TRAVIS_BUILD_DIR}"
 
-      
+os:
+  - linux
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt install cmake
+  - cd "${TRAVIS_BUILD_DIR}"
+
+
 addons:
   apt:
-    sources: 
+    sources:
       - ubuntu-toolchain-r-test
       - llvm-toolchain-trusty-5.0
-      
+
     packages:
       - gcc-6
       - g++-6
 
 
 script:
-    - mkdir bin
-    - cd bin 
-    - cmake ..
-    - make 
+  - mkdir bin
+  - cd bin
+  - cmake ..
+  - make
 
 notifications:
 email: false

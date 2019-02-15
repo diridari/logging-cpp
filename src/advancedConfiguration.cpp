@@ -6,8 +6,6 @@
 #include <advancedConfiguration.h>
 
 
-
-
 void advancedConfiguration::pintLogSrc(bool enable, unsigned int maxLength) {
     maxSrcLength = maxLength;
     printLogSrc = enable;
@@ -19,6 +17,7 @@ void advancedConfiguration::setSrcShift(bool enable) {
     disableShift = !enable;
     filteredLength = 0;
 }
+
 void advancedConfiguration::setCliHighLight(bool enable) {
     highlight_ = enable;
 
@@ -46,24 +45,23 @@ bool loggerPrivateConfig::isDisableShift() const {
 
 string loggerPrivateConfig::handleSrc(string src) {
     bool addSrc = !src.empty();
-    if(addSrc && printLogSrc){
-        src +="\t";
+    if (addSrc && printLogSrc) {
+        src += "\t";
 
-        if(maxSrcLength == 0 || src.length() < maxSrcLength) {
-            if(!disableShift) {
+        if (maxSrcLength == 0 || src.length() < maxSrcLength) {
+            if (!disableShift) {
                 if (src.length() < filteredLength)
-                    filteredLength -= filteredLength/3;
+                    filteredLength -= filteredLength / 3;
                 else
                     filteredLength = src.length();
                 while (src.length() < filteredLength)
                     src += " ";
             }
-        }
-        else{
-            src = src.substr(0,maxSrcLength);
+        } else {
+            src = src.substr(0, maxSrcLength);
             src += "..";
         }
-        if(addSrc)
+        if (addSrc)
             src += " : ";
     } else
         src = "";

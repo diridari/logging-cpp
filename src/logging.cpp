@@ -19,14 +19,12 @@ static bool firstTimeStamp = true;
 static string logfile = "log.log";
 static system_clock::time_point startTime;
 static mutex locker;
-static loggerPrivateConfig config =  loggerPrivateConfig();
+static loggerPrivateConfig config = loggerPrivateConfig();
 static unsigned int pointsOfInterest = 0;
 static LogLevel printLineIf = Error;
 
-static string getTimeStamp()
-{
-    if (firstTimeStamp)
-    {
+static string getTimeStamp() {
+    if (firstTimeStamp) {
         firstTimeStamp = false;
         startTime = chrono::high_resolution_clock::now();
     }
@@ -39,24 +37,24 @@ static string getTimeStamp()
     return s;
 
 }
+
 void openLogWriter(fstream **writer) {
     *writer = new fstream();
     (*writer)->open(logfile, ofstream::trunc | ofstream::out);
     if (level != None) {
-        cout << "write logfile to " << logfile<< endl;
+        cout << "write logfile to " << logfile << endl;
     }
     loggerIsOpen = true;
 }
 
 
-
-void Log::log_(string src, string message, LogLevel l,string name, int line, unsigned int interest) {
-    if(isInPointOfInterest(interest)) {
+void Log::log_(string src, string message, LogLevel l, string name, int line, unsigned int interest) {
+    if (isInPointOfInterest(interest)) {
         locker.lock();
         src = config.handleSrc(src);
         string log;
-        if(l != UserInfo)
-            log  = getTimeStamp() + logLevelToString(l) + src + message;
+        if (l != UserInfo)
+            log = getTimeStamp() + logLevelToString(l) + src + message;
         else
             log = message;
 
@@ -81,26 +79,24 @@ void Log::log_(string src, string message, LogLevel l,string name, int line, uns
     }
 }
 
-void Log::log_(string message, LogLevel l){
-    log_("",message,l,"",-1);
+void Log::log_(string message, LogLevel l) {
+    log_("", message, l, "", -1);
 }
 
 
-void Log::setLogLevel(LogLevel cli, LogLevel file)
-{
+void Log::setLogLevel(LogLevel cli, LogLevel file) {
     level = cli;
     logFileLevel = file;
 }
 
-void Log::setLogLevel(LogLevel cliAndFile)
-{
+void Log::setLogLevel(LogLevel cliAndFile) {
     setLogLevel(cliAndFile, cliAndFile);
 }
 
 
-void Log::setLogFileName(string fileName){
+void Log::setLogFileName(string fileName) {
     locker.lock();
-    if(loggerIsOpen) {
+    if (loggerIsOpen) {
         loggerIsOpen = false;
         if (level != None) {
             *logWriter << "change Logfile to " << fileName << endl;
@@ -110,10 +106,9 @@ void Log::setLogFileName(string fileName){
     logfile = fileName;
     locker.unlock();
 }
-string Log::logLevelToString(LogLevel l)
-{
-    switch (l)
-    {
+
+string Log::logLevelToString(LogLevel l) {
+    switch (l) {
         case CriticError:
             return ":CriticError  : ";
         case Error:
@@ -132,13 +127,15 @@ string Log::logLevelToString(LogLevel l)
             return ":    Debug L2 : ";
         case DebugL3:
             return ":     Debug L3: ";
-        default	: Log::log ("unknown Level" + l,UserInfo);return "unknown Level";
+        default    :
+            Log::log ("unknown Level" + l, UserInfo);
+            return "unknown Level";
     }
 
 }
 
 string Log::highlight(LogLevel l) {
-    if(config.isHighlight()) {
+    if (config.isHighlight()) {
         switch (l) {
             case None:
                 return "";
@@ -165,25 +162,34 @@ string Log::highlight(LogLevel l) {
 }
 
 
-
-
 void Log::setLogLevel(int cli, int file) {
-    setLogLevel(IntToLogLevel(cli),IntToLogLevel(file));
+    setLogLevel(IntToLogLevel(cli), IntToLogLevel(file));
 }
 
 LogLevel Log::IntToLogLevel(int i) {
-    switch (i){
-        case    -1  : return None;
-        case    0   : return UserInfo;
-        case    1   : return CriticError;
-        case    2   : return Error;
-        case    3   : return Message;
-        case    4   : return Info;
-        case    5   : return Debug;
-        case    6   : return DebugL2;
-        case    7   : return DebugL3;
+    switch (i) {
+        case -1  :
+            return None;
+        case 0   :
+            return UserInfo;
+        case 1   :
+            return CriticError;
+        case 2   :
+            return Error;
+        case 3   :
+            return Message;
+        case 4   :
+            return Info;
+        case 5   :
+            return Debug;
+        case 6   :
+            return DebugL2;
+        case 7   :
+            return DebugL3;
         default:
-            cerr << "Log :: change Loglevel from int with un undefined value: allowed values ar <-1...7>  set logLevel to Debug"<< endl;
+            cerr
+                    << "Log :: change Loglevel from int with un undefined value: allowed values ar <-1...7>  set logLevel to Debug"
+                    << endl;
             return Debug;
     }
 }
@@ -194,28 +200,27 @@ void Log::setLogLevel(int cliAndFile) {
 }
 
 
-
-advancedConfiguration * Log::advancedConf() {
+advancedConfiguration *Log::advancedConf() {
     return &config;
 }
 
 void Log::setLogLevel(string cli, string file) {
-    setLogLevel(stringToLogLevel(cli),stringToLogLevel(file));
+    setLogLevel(stringToLogLevel(cli), stringToLogLevel(file));
 }
 
 LogLevel Log::stringToLogLevel(string toConvert) {
 
-    if(toConvert == "None")         return None;
-    if(toConvert == "UserInfo")     return UserInfo;
-    if(toConvert == "CriticError")  return CriticError;
-    if(toConvert == "Error")        return Error;
-    if(toConvert == "Message")      return Message;
-    if(toConvert == "Info")         return Info;
-    if(toConvert == "Debug")        return Debug;
-    if(toConvert == "DebugL2")      return DebugL2;
-    if(toConvert == "DebugL3")      return DebugL3;
+    if (toConvert == "None") return None;
+    if (toConvert == "UserInfo") return UserInfo;
+    if (toConvert == "CriticError") return CriticError;
+    if (toConvert == "Error") return Error;
+    if (toConvert == "Message") return Message;
+    if (toConvert == "Info") return Info;
+    if (toConvert == "Debug") return Debug;
+    if (toConvert == "DebugL2") return DebugL2;
+    if (toConvert == "DebugL3") return DebugL3;
 
-    Log::log("unknown loglevel string "  + toConvert,CriticError);
+    Log::log("unknown loglevel string " + toConvert, CriticError);
 
 }
 
@@ -228,7 +233,7 @@ void Log::setPointOfInterest(unsigned int points) {
 }
 
 bool Log::isInPointOfInterest(unsigned int toCheck) {
-    return (toCheck & pointsOfInterest) >0 || toCheck == 0 || pointsOfInterest == 0;
+    return (toCheck & pointsOfInterest) > 0 || toCheck == 0 || pointsOfInterest == 0;
 }
 
 void Log::printSrcLine(LogLevel l) {

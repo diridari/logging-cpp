@@ -18,7 +18,7 @@ using namespace std;
 /**
  * Compiler magic.
  */
-#define GET_MACRO(_1,_2,_3,NAME,...) NAME
+#define GET_MACRO(_1, _2, _3, NAME, ...) NAME
 /**
  * Logging.
  * if something happen in the program call this makro and communicate it.
@@ -28,14 +28,14 @@ using namespace std;
  * You can set the max length of the messageSrc with "setPintLogSrc(true,<maxLength>)" or set it to unlimited with "setPintLogSrc(true,0)"
  */
 #define log(...) GET_MACRO(__VA_ARGS__,logWithInterest , logWithoutInterest)(__VA_ARGS__)
-#define logWithoutInterest(mes,lev) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__);
-#define logWithInterest(mes,lev,interest) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__,interest);
+#define logWithoutInterest(mes, lev) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__);
+#define logWithInterest(mes, lev, interest) Log::log_(__FUNCTION__,mes,lev,__FILE__,__LINE__,interest);
 /**
  * Log level.
  */
 typedef enum LogLevel {
-    None = -1, 	        // Noting  just for tests
-    UserInfo = 0,	    // Information for Users
+    None = -1,            // Noting  just for tests
+    UserInfo = 0,        // Information for Users
     CriticError = 1,
     Error = 2,
     Message = 3,
@@ -43,7 +43,7 @@ typedef enum LogLevel {
     Debug = 5,
     DebugL2 = 6,
     DebugL3 = 7
-}LogLevel;
+} LogLevel;
 
 
 static const char *const DISABLE_CLI_HIGHLIGHT = "\033[0;0m";
@@ -54,12 +54,14 @@ class Log {
      * return a string which contains the name of log level
      */
     static string logLevelToString(LogLevel l);
+
     /**
      * set the cli highlight corresponding to the  loglevel
      * @param l  loglevel to determine cli color
      * @return cli command to highlight the following text
      */
     static string highlight(LogLevel l);
+
     static LogLevel IntToLogLevel(int i);
 
     static LogLevel stringToLogLevel(string toConvert);
@@ -88,7 +90,7 @@ public:
      * @param importance of the message
      */
 
-    static void log_(string src ,string message, LogLevel l,string name, int line, unsigned int interest = 0);
+    static void log_(string src, string message, LogLevel l, string name, int line, unsigned int interest = 0);
 
     /**
      * set the current level.
@@ -98,6 +100,7 @@ public:
      * @return set success
      */
     static void setLogLevel(LogLevel cli, LogLevel file);
+
     /**
      * set the current level.
      * if a message is equal important or more important(lower number) than this message gets printed to the cli
@@ -129,6 +132,7 @@ public:
      * @para cli  log level for cli AND file
      */
     static void setLogLevel(int cliAndFile);
+
     /**
      * set the current level.
      * if a message is equal important or more important(lower number) than this message gets printed to the cli
@@ -150,7 +154,7 @@ public:
      * allows the set some additional  configurations
      * @return advanced Configuration object
      */
-    static advancedConfiguration  *advancedConf();
+    static advancedConfiguration *advancedConf();
 
     /**
      * Point of Interest.

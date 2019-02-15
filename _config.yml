@@ -1,6 +1,6 @@
 theme: jekyll-theme-slate
 title: C++ Logging Library
-description: Simple logging and logfile-generator library for c++ 
+description: Simple logging and logfile-generator library for c++
 show_downloads: true
 plugins:
-- jekyll-seo-tag
+  - jekyll-seo-tag
